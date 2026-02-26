@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar detalle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container d-flex justify-content-center mt-4" style="min-height: 90vh;">
+    <div class="card shadow-sm p-4 w-100" style="max-width: 700px;">
+
+        <h3 class="mb-3 text-center">✏️ Editar detalle</h3>
+
+        <a href="{{ url_for('editar_liquidacion', liquidacion_id=detalle.liquidacion_id) }}"
+           class="btn btn-link mb-3">
+            ← Volver a la liquidación
+        </a>
+
+        <form method="POST" action="{{ url_for('actualizar_detalle', detalle_id=detalle.id) }}">
+
+            <div class="mb-3">
+                <label class="form-label">Materia</label>
+                <select name="materia" class="form-select" required>
+                    {% for m in materias %}
+                        <option value="{{ m.nombre }}"
+                                {% if m.nombre == detalle.materia %}selected{% endif %}>
+                            {{ m.nombre }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Horario</label>
+                <input type="text" name="horario" class="form-control"
+                       value="{{ detalle.horario }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Comentario</label>
+                <input type="text" name="comentario" class="form-control"
+                       value="{{ detalle.comentario }}">
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Cantidad de alumnos</label>
+                    <input type="number" name="cantidad_alumnos" class="form-control"
+                           value="{{ detalle.cantidad_alumnos }}" required>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Horas por mes</label>
+                    <input type="number" step="any" name="horas_mes" class="form-control"
+                           value="{{ detalle.horas_mes }}" required>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Valor por hora</label>
+                <input type="number" step="any" name="valor_hora" class="form-control"
+                       value="{{ detalle.valor_hora }}" required>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-success w-50">
+                    💾 Guardar cambios
+                </button>
+
+                <a href="{{ url_for('editar_liquidacion', liquidacion_id=detalle.liquidacion_id) }}"
+                   class="btn btn-outline-secondary w-50 text-center">
+                    Cancelar
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

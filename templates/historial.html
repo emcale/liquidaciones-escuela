@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Historial</title>
+</head>
+<body>
+
+<h2>Historial de Liquidaciones</h2>
+
+Profesor: <b>{{ profesor.nombre }}</b>
+
+<hr>
+
+<table border="1" cellpadding="6">
+
+<tr>
+<th>ID</th>
+<th>Mes</th>
+<th>Año</th>
+<th>Fecha</th>
+<th>Abrir</th>
+</tr>
+
+{% for l in liquidaciones %}
+<tr>
+
+<td>{{ l.id }}</td>
+<td>{{ l.mes }}</td>
+<td>{{ l.anio }}</td>
+<td>{{ l.fecha.strftime("%d/%m/%Y") }}</td>
+
+<td>
+<a href="/editar_liquidacion/{{ l.id }}">Ver / Editar</a>
+</td>
+
+</tr>
+{% endfor %}
+
+</table>
+
+<br>
+<a href="/">Volver</a>
+
+</body>
+</html>

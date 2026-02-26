@@ -1,0 +1,32 @@
+<h2>Talón de Pago</h2>
+
+<b>Profesor:</b> {{ profesor.nombre }}<br>
+<b>Mes:</b> {{ mes }}<br>
+
+<hr>
+
+<table border="1" width="100%">
+<tr>
+<th>Materia</th>
+<th>Horas</th>
+<th>$ Hora</th>
+<th>Subtotal</th>
+</tr>
+
+{% for d in detalles %}
+<tr>
+<td>{{ d.materia }}</td>
+<td>{{ d.horas }}</td>
+<td>{{ d.precio_hora }}</td>
+<td>{{ d.subtotal }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<h3>Total a cobrar: $ {{ total }}</h3>
+
+<br><br>
+
+<b>Importe recibido:</b> ___________________________<br><br>
+
+<b>Firma Recibí Conforme:</b> _______________________

@@ -1,0 +1,38 @@
+<h1>Nueva Liquidación - {{ profesor.nombre }}</h1>
+
+<form method="POST">
+
+Mes:
+<select name="mes">
+<option>Marzo</option>
+<option>Abril</option>
+<option>Mayo</option>
+<option>Junio</option>
+<option>Julio</option>
+<option>Agosto</option>
+<option>Septiembre</option>
+<option>Octubre</option>
+<option>Noviembre</option>
+<option>Diciembre</option>
+</select>
+
+<hr>
+
+{% for m in profesor.materia %}{% endfor %}
+
+{% for m in profesor.materias %}
+{% endfor %}
+
+{% for m in Materia.query.filter_by(profesor_id=profesor.id).all() %}
+<p>
+<input type="checkbox" name="check_{{ m.id }}"> {{ m.nombre }}
+
+Horas <input name="horas_{{ m.id }}" value="6" size="3">
+Alumnos <input name="alumnos_{{ m.id }}" value="1" size="3">
+Precio <input name="precio_{{ m.id }}" value="0" size="5">
+</p>
+{% endfor %}
+
+<button>Guardar Liquidación</button>
+
+</form>

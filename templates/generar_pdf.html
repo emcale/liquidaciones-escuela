@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+<h2>Liquidación mensual — {{ profesor.nombre }}</h2>
+
+<form method="POST">
+
+Mes:
+<select name="mes">
+<option>Marzo</option>
+<option>Abril</option>
+<option>Mayo</option>
+<option>Junio</option>
+<option>Julio</option>
+<option>Agosto</option>
+<option>Septiembre</option>
+<option>Octubre</option>
+<option>Noviembre</option>
+<option>Diciembre</option>
+</select>
+
+<br><br>
+
+Semanas del mes:
+<input type="number" name="semanas" value="4">
+
+<br><br>
+
+<table>
+
+<tr>
+<th>Usar</th>
+<th>Materia</th>
+<th>Clases/Sem</th>
+<th>Duración</th>
+<th>$ Hora</th>
+</tr>
+
+{% for m in materias %}
+<tr>
+
+<td><input type="checkbox" name="materias" value="{{ m.id }}"></td>
+
+<td>{{ m.nombre }}</td>
+
+<td>{{ m.clases_semana }}</td>
+
+<td>{{ m.duracion_clase }}</td>
+
+<td>
+<input type="number" step="0.01" name="valor_{{ m.id }}" value="0">
+</td>
+
+</tr>
+{% endfor %}
+
+</table>
+
+<br>
+
+<button type="submit">Generar PDF</button>
+
+</form>
+
+<a href="/">⬅ Volver</a>
+
+{% endblock %}

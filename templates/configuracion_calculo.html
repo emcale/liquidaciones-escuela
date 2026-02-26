@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Configuración de cálculo de liquidación</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light p-4">
+
+<div class="container">
+
+    <h2 class="mb-3">🧮 Configuración de cálculo de liquidación</h2>
+
+    <div class="alert alert-info">
+        <strong>Variables disponibles:</strong>
+        <ul class="mb-1">
+            <li><code>valor_profesor</code> → valor según escala del profesor</li>
+            <li><code>valor_alumnos</code> → valor según rango de cantidad de alumnos</li>
+            <li><code>horas</code> → horas mensuales de la materia</li>
+        </ul>
+        <strong>Operadores permitidos:</strong> + − * / ( )
+    </div>
+
+    <form method="POST">
+        <div class="mb-3">
+            <label class="form-label"><strong>Fórmula de cálculo</strong></label>
+            <input type="text"
+                   class="form-control form-control-lg"
+                   name="formula"
+                   value="{{ config.formula }}"
+                   required>
+        </div>
+
+        <div class="alert alert-secondary">
+            <strong>Ejemplos:</strong><br>
+            <code>(valor_profesor + valor_alumnos) * horas</code><br>
+            <code>valor_profesor * horas</code><br>
+            <code>(valor_profesor * 0.8 + valor_alumnos) * horas</code>
+        </div>
+
+        <div class="d-flex gap-2">
+            <button class="btn btn-primary">💾 Guardar fórmula</button>
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>

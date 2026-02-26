@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+<h2>Materias base — {{ profesor.nombre }}</h2>
+
+<form method="POST">
+
+<b>Materia:</b>
+<input type="text" name="nombre" required>
+
+<b>Horario:</b>
+<input type="text" name="horario">
+
+<b>Comentario:</b>
+<input type="text" name="comentario">
+
+<br><br>
+
+<b>Cant alumnos:</b>
+<input type="number" name="cantidad_alumnos">
+
+<b>Clases/Sem:</b>
+<input type="number" name="clases_semana" required>
+
+<b>Duración:</b>
+<select name="duracion_clase">
+    <option value="0.5">30 min</option>
+    <option value="1">1 hora</option>
+    <option value="1.5">1:30</option>
+    <option value="2">2 horas</option>
+    <option value="3">3 horas</option>
+</select>
+
+<b>Cuatrimestre:</b>
+<select name="cuatrimestre">
+    <option value="1">1°</option>
+    <option value="2">2°</option>
+</select>
+
+<button type="submit">Agregar</button>
+
+</form>
+
+<hr>
+
+<h3>Listado cargado</h3>
+
+<table border="1" cellpadding="6">
+
+<tr>
+<th>Materia</th>
+<th>Horario</th>
+<th>Comentario</th>
+<th>Alumnos</th>
+<th>Clases/Sem</th>
+<th>Duración</th>
+<th>Cuatr.</th>
+<th>Acciones</th>
+</tr>
+
+{% for m in materias %}
+<tr>
+
+<td>{{ m.nombre }}</td>
+<td>{{ m.horario }}</td>
+<td>{{ m.comentario }}</td>
+<td>{{ m.cantidad_alumnos }}</td>
+<td>{{ m.clases_semana }}</td>
+<td>{{ m.duracion_clase }}</td>
+<td>{{ m.cuatrimestre }}</td>
+
+<td>
+<a href="/materia/editar/{{ m.id }}">✏ Editar</a> |
+<a href="/materia/borrar/{{ m.id }}" onclick="return confirm('¿Eliminar materia?')">🗑 Borrar</a>
+</td>
+
+</tr>
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/">⬅ Volver</a>
+
+{% endblock %}
